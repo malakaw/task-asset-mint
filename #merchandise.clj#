@@ -1,0 +1,12 @@
+(ns  zmaxx-etl.merchandise
+  (:require
+   [zmaxx-etl.db-client :as dbc]
+   )
+  )
+
+
+
+
+
+
+

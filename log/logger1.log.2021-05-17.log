@@ -1,0 +1,111 @@
+[2021-05-17 10:13:13,015][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('16')));	
+
+[2021-05-17 10:13:13,084][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('101')));	
+
+[2021-05-17 10:13:13,087][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('17')));	
+
+[2021-05-17 10:13:13,092][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('107')));	
+
+[2021-05-17 10:13:13,094][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('21')));	
+
+[2021-05-17 10:13:13,095][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('106')));	
+
+[2021-05-17 10:13:13,098][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('20')));	
+
+[2021-05-17 10:13:13,101][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('19')));	
+
+[2021-05-17 10:13:13,104][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('18')));	
+
+[2021-05-17 10:13:58,784][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('16')));	
+
+[2021-05-17 10:13:58,788][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('101')));	
+
+[2021-05-17 10:13:58,793][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('17')));	
+
+[2021-05-17 10:13:58,796][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('107')));	
+
+[2021-05-17 10:13:58,799][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('21')));	
+
+[2021-05-17 10:13:58,803][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('106')));	
+
+[2021-05-17 10:13:58,806][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('20')));	
+
+[2021-05-17 10:13:58,808][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('19')));	
+
+[2021-05-17 10:13:58,811][INFO][zmaxx-etl.db-client] 
+ select rd_product_category.id as cid from rd_product_category where rd_product_category.upnum in
+	(select rd_product_category.num from rd_product_category where rd_product_category.upnum in						
+		(select num from rd_product_category where num in
+			('18')));	
+
+[2021-05-17 10:17:06,808][INFO][com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 2, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 2t22h0ahtb5kljmszb2m|1b2c421a, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 2t22h0ahtb5kljmszb2m|1b2c421a, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/zmaxx_001?zeroDateTimeBehavior=convertToNull, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 50, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 50, maxStatements -> 5, maxStatementsPerConnection -> 100, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> select 1, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]
+[2021-05-17 11:45:38,584][ERROR][zmaxx-etl.db-client] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,' at line 1
+[2021-05-17 12:38:56,970][INFO][com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 2, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 2t22h0ahtb5kljmszb2m|7baf832d, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> null, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 2t22h0ahtb5kljmszb2m|7baf832d, idleConnectionTestPeriod -> 10, initialPoolSize -> 1, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/zmaxx_001?zeroDateTimeBehavior=convertToNull, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 50, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 50, maxStatements -> 5, maxStatementsPerConnection -> 100, minPoolSize -> 1, numHelperThreads -> 3, preferredTestQuery -> select 1, properties -> {user=******, password=******}, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, userOverrides -> {}, usesTraditionalReflectiveProxies -> false ]

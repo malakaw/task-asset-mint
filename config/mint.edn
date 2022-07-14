@@ -1,0 +1,20 @@
+{
+ :cardano_cli "/home/ubuntu/.local/bin/cardano-cli"
+ :mint_wallet_address_file "/home/ubuntu/test_cardano/keys/payment1.addr"
+ :basePath "/home/ubuntu/install/temp/auto"
+ :policy_before_slot 59310349
+ :paymentsky_file_ "/home/ubuntu/test_cardano/keys/payment1.skey"
+ :protocol_file  "/home/ubuntu/install/temp/protocol.json"
+
+ :order_path "......../order_jsons/2022_3"
+
+ :lock_policy_file   ".........../p.lock"
+ :lock_send_file     "........./s.lock"
+
+
+ :previous_policyID_file "......../previousPID"
+ 
+ :send_everyfile_sleep 5000
+ :policy_everyfile_sleep 5000
+ 
+}

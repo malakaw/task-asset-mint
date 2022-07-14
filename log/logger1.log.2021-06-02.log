@@ -1,0 +1,2545 @@
+[2021-06-02 09:20:23,302][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:20:24,281][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:22:21,034][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:22:21,957][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:30:50,607][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:37:53,662][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:37:54,567][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:37:54,712][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 09:38:27,480][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:38:28,316][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:39:16,829][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:42:06,665][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 09:44:58,321][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:44:59,148][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:44:59,191][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 09:49:19,075][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 09:49:19,977][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 09:49:20,011][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:49:32,521][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 10:49:33,535][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 10:49:33,587][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:54:00,072][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 10:54:00,959][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 10:54:01,003][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:54:01,367][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '%s'  and   order_create  <= '%s'
+group by store_key;
+
+
+[2021-06-02 10:57:02,114][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 10:57:03,060][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 10:57:03,189][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:57:03,531][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '%s'  and   order_create  <= '%s'
+group by store_key;
+
+
+[2021-06-02 10:58:25,880][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 10:58:26,753][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 10:58:26,876][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:58:27,211][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 10:59:39,314][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 10:59:40,121][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 10:59:40,157][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 10:59:40,521][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:14:29,565][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:14:30,524][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:14:30,642][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:14:30,973][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:21:28,783][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:21:29,623][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:21:29,753][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:21:30,109][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:21:30,123][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '%s'
+)
+group by store_key 
+
+
+[2021-06-02 11:23:07,685][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:23:08,635][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:23:08,799][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:23:09,251][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:23:09,265][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '%s'
+)
+group by store_key 
+
+
+[2021-06-02 11:24:32,942][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:24:33,765][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:24:33,840][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:24:34,246][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:24:34,250][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '%s'
+)
+group by store_key 
+
+
+[2021-06-02 11:27:32,371][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:27:33,225][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:27:33,302][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:27:33,684][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:27:33,687][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '%s'
+)
+group by store_key 
+
+
+[2021-06-02 11:29:00,898][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:29:01,717][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:29:01,794][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:29:02,229][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:29:02,235][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:30:44,386][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:30:45,207][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:30:45,264][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:30:45,618][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:30:45,624][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:30:46,462][ERROR][zmaxx-etl.db-client] Wrong number of args passed to keyword: :new_u_pay
+[2021-06-02 11:31:03,998][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:31:04,809][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:31:04,869][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:31:05,227][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:31:05,231][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:31:06,055][ERROR][zmaxx-etl.db-client] Wrong number of args passed to keyword: :new_u_pay
+[2021-06-02 11:32:15,060][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:32:15,866][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:32:15,917][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:32:16,258][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:32:16,262][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:35:06,975][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:35:07,787][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:35:07,841][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:35:08,184][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:35:08,189][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:36:37,009][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:36:37,813][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:36:37,861][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:36:38,196][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:36:38,200][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:40:28,309][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:40:29,145][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:40:29,193][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:40:29,527][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:40:29,532][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:49:50,586][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:49:51,445][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:49:51,493][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:49:51,838][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:49:51,843][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:49:52,669][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 11:51:55,203][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:51:55,999][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:51:56,062][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:51:56,450][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:51:56,463][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:51:57,276][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 11:54:52,459][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:54:53,280][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:54:53,331][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:54:53,674][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:54:53,686][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:54:54,525][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 11:56:52,431][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 11:56:53,281][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 11:56:53,336][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 11:56:53,681][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 11:56:53,685][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 11:56:54,492][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:00:39,489][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:00:40,321][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:00:40,371][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:00:40,706][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:00:40,710][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:00:41,532][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:06:43,489][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:06:44,340][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:06:44,388][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:06:44,736][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:06:44,740][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:06:45,573][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:08:28,863][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:08:29,725][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:08:29,776][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:08:30,129][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:08:30,134][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:08:30,965][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:10:41,679][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:10:42,716][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:10:42,779][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:10:43,125][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:10:43,131][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:10:43,975][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:31:54,041][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:31:55,057][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:31:55,116][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:31:55,459][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:31:55,464][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:31:56,304][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:31:56,707][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `new_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (10, '上海（诺亚新天地店）', 13247.779999999868, 0.44018092272691195, 5831.420024483072, 2716.0, 3062256.0, 25619.0, 1.6016880275085965, 4.8776804123710855, null,
+                                      56,   32.429771, 48.5, 15, null, 8, 0.027914110892542275, 10, 0.9720858891074577, 0.0, 0);
+
+
+[2021-06-02 12:31:56,723][ERROR][zmaxx-etl.db-client] Column 'new_user_rate' specified twice
+[2021-06-02 12:34:26,051][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:34:26,861][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:34:26,908][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:34:27,253][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:34:27,257][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:34:28,092][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:35:38,249][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:35:39,080][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:35:39,134][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:35:39,477][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:35:39,481][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:35:40,382][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:36:01,557][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 12:36:02,398][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 12:36:02,452][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 12:36:02,803][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 12:36:02,808][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 12:36:03,682][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 12:36:04,137][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (10, '上海（诺亚新天地店）', 13247.779999999868, 0.44018092272691195, 5831.420024483072, 2716.0, 3062256.0, 25619.0, 1.6016880275085965, 4.8776804123710855, null,
+                                      56,   32.429771, 48.5, 15, null, 8, 0.027914110892542275, 10, 0.9720858891074577, 0.0, 0);
+
+
+[2021-06-02 20:43:51,124][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 20:43:53,001][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 20:43:53,161][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 20:43:53,516][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 20:43:53,523][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 24:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 20:43:54,494][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 20:43:54,933][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (10, '上海（诺亚新天地店）', 13247.779999999868, 0.44018092272691195, 5831.420024483072, 2716.0, 3062256.0, 25619.0, 1.6016880275085965, 4.8776804123710855, 97,
+                                      56,   32.429771, 48.5, 15, null, 3, 0.012839887135807034, 10, 0.9871601128641929, 0.0, 0);
+
+
+[2021-06-02 20:50:16,056][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 20:50:17,210][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 20:50:17,341][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 20:50:17,693][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 20:50:17,702][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 24:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 20:50:18,675][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 20:50:19,103][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (10, '上海（诺亚新天地店）', 13247.779999999868, 0.44018092272691195, 5831.420024483072, 2716.0, 3062256.0, 25619.0, 1.6016880275085965, 4.8776804123710855, 97,
+                                      56,   32.429771, 48.5, 15, 883.18536, 3, 0.012839887135807034, 10, 0.9871601128641929, 0.0, 0);
+
+
+[2021-06-02 20:52:14,004][INFO][zmaxx-etl.db-client] 
+select  orderI.store_key , 
+			   rds.name,   
+                           sum(orderI.sku_pay) as payment , 
+                           (sum(orderI.sku_pay) - sum(rdp.jj))/sum(orderI.sku_pay) as gross_profit,   
+                           (sum(orderI.sku_pay) - sum(rdp.jj)) as gross,                    
+                           sum(orderI.sku_qty) as qty,
+                           sum(rdpu.sl) as purchase_sl,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty) as unit_merchan_price,
+                           sum(rdp.jj) as jj,
+                           count(distinct(orderI.order_id))  as order_count,
+                           sum(orderI.sku_pay)/count(distinct(orderI.order_id)) as  unit_order_price,
+                           sum(orderI.sku_qty)/count(distinct(orderI.order_id))  as  joint_rate,
+                           AVG(zorder.order_pay) as avg_order_pay,
+                           sum(orderI.sku_pay)/sum(orderI.sku_qty)  as unit_goods_price,
+                           count(distinct(orderI.sku_id)) as sku_distinct_count,
+                           count(distinct(zorder.customer_key)) as user_count
+                   from zmaxx_001.order_item as orderI
+                   left join  rd_product as rdp on rdp.id = orderI.sku_id 
+                   left join  rd_store as rds on rds.`id` =  orderI.store_key
+                   left join  rd_purchase  as rdpu on rdpu.market = orderI.store_key
+				   left join  zmaxx_001.order as zorder on zorder.id =   orderI.order_id 	
+                   where        orderI.order_source='redian'  
+                           and  orderI.sku_pay>0                    
+                           and  orderI.create_dt >=  '2021-05-11 00:00:00' 
+                           and  orderI.create_dt <= '2021-05-11 24:00:00'
+                           #and  p_stock.kcsl > 0
+                   group by orderI.store_key ;
+
+
+[2021-06-02 20:52:14,966][INFO][zmaxx-etl.db-client] 
+    select market,sum(kcsl)  as kcsl from rd_product_stock where kcsl > 0 group by market 
+
+
+[2021-06-02 20:52:15,102][INFO][zmaxx-etl.db-client] 
+select  store_key, sum(CAST(sku_qty AS DECIMAL(12,2)) ) as sale_qty_30  from zmaxx_001.order_item where order_create > DATE_SUB('2021-05-11',INTERVAL 30 DAY)  group by store_key
+[2021-06-02 20:52:15,434][INFO][zmaxx-etl.db-client] 
+select store_key,count(order_id) as user_null_count from zmaxx_001.order 
+where customer_key = 0  and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key;
+
+
+[2021-06-02 20:52:15,452][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as new_u,sum(order_pay) as new_u_pay from zmaxx_001.order 
+where  customer_key not in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 24:00:00'
+)
+group by store_key 
+
+
+[2021-06-02 20:52:16,320][INFO][zmaxx-etl.db-client] 
+select store_key,COUNT(DISTINCT(customer_key)) as old_u,sum(order_pay) as old_u_pay from zmaxx_001.order 
+where  customer_key   in
+(
+select distinct(customer_key) as old_key from zmaxx_001.order   where      order_create  <= '2021-05-11 00:00:00'
+)
+and order_create >=  '2021-05-11 00:00:00'  and   order_create  <= '2021-05-11 24:00:00'
+group by store_key 
+
+[2021-06-02 20:52:16,748][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (10, '上海（诺亚新天地店）', 13247.779999999868, 0.44018092272691195, 5831.420024483072, 2716.0, 3062256.0, 25619.0, 1.6016880275085965, 4.8776804123710855, 97,
+                                      56,   32.429771, 48.5, 15, 883.18536, 3, 0.012839887135807034, 10, 0.9871601128641929, 0.0, 0);
+
+
+[2021-06-02 20:52:16,758][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (11, '浙江（杭州工联大厦店）', 50139.050000002535, 0.437419136256846, 21931.779943739923, 8762.0, 1.772182E7, 31726.0, 0.8111162243697909, 5.722329376854889, 151,
+                                      165,   40.974043, 53.1030303030303, 101, 496.42624, 51, 0.03332133337189108, 37, 0.9666786666281089, 0.0, 0);
+
+
+[2021-06-02 20:52:16,768][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (12, '浙江（杭州古墩印象城店）', 12090.419999999975, 0.5345571105892061, 6463.019981009935, 960.0, 424128.0, 26201.0, 3.894901144640999, 12.594187499999974, 76,
+                                      39,   58.928125, 24.615384615384617, 39, 310.01077, 1, 0.027426673349643826, 2, 0.9725733266503562, 0.8717949, 34);
+
+
+[2021-06-02 20:52:16,772][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (13, '浙江（杭州绿地店）', 7300.600000000012, 0.4593047150761405, 3353.200002884877, 1060.0, 890014.0, 28707.0, 3.5392676612008382, 6.887358490566049, 64,
+                                      27,   36.54557, 39.25925925925926, 20, 365.03, 4, 0.02087499657562389, 5, 0.9791250034243761, 0.44444445, 12);
+
+
+[2021-06-02 20:52:16,775][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (14, '浙江（杭州in77店）', 31096.00000000037, 0.42854097007734004, 13325.910005525126, 5798.0, 7816402.0, 28819.0, 0.8306623623681328, 5.363228699551634, 140,
+                                      104,   47.32346, 55.75, 105, 296.15237, 1, 0.0059911242603549585, 8, 0.994008875739645, 0.9326923, 97);
+
+
+[2021-06-02 20:52:16,778][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (17, '江苏（泰州姜堰店）', 767.5999999999999, -0.7360604486470426, -565.0000003814698, 12.0, 1248.0, 4433.0, 12.046195652173912, 63.96666666666666, 6,
+                                      5,   88.783331, 2.4, 5, 153.52, 0, 0.0, 3, 1.0, 0.4, 2);
+
+
+[2021-06-02 20:52:16,782][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (18, '浙江（慈溪保利店）', 10400.999999999995, 0.3164464897197569, 3291.35993957519, 96.0, 50624.0, 7712.0, 4.221127531472359, 108.34374999999994, 16,
+                                      10,   226.800005, 9.6, 11, 945.5455, 0, 0.0, 1, 1.0, 1.0, 10);
+
+
+[2021-06-02 20:52:16,785][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (19, '安徽（蚌埠金鹏广场店）', 10081.59999999999, -0.28727583104969057, -2896.2000183105574, 108.0, 7738.0, 5728.0, 3.0663811563169165, 93.34814814814806, 51,
+                                      20,   276.009432, 5.4, 21, 480.0762, 3, 0.03426043485161089, 11, 0.9657395651483891, 0.25, 5);
+
+
+[2021-06-02 20:52:16,789][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (21, '江苏（淮安玖珑汇店）', 4059.250000000003, 0.17231015224589594, 699.4499855041536, 55.0, 17424.0, 7697.0, 5.744029850746268, 73.80454545454552, 10,
+                                      8,   120.345454, 6.875, 9, 451.02777, 0, 0.0, 1, 1.0, 1.0, 8);
+
+
+[2021-06-02 20:52:16,792][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (26, '上海（北上海广场店）', 66301.64000000058, 0.29260995467604467, 19400.5198753476, 2128.0, 1067230.0, 26236.0, 2.6919761953621997, 31.156785714285988, 82,
+                                      38,   103.610528, 56.0, 1, 66301.64, 1, 0.05112090741646768, 1, 0.9488790925835323, 0.0, 0);
+
+
+[2021-06-02 20:52:16,796][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (27, '浙江（杭州新天地店）', 13042.399999999834, 0.4313347250673696, 5625.64001821859, 2720.0, 4073580.0, 27173.0, 2.2520304989225925, 4.794999999999939, 70,
+                                      33,   38.732075, 82.42424242424242, 1, 13042.4, 5, 0.022909893884561414, 1, 0.9770901061154386, 0.0, 0);
+
+
+[2021-06-02 20:52:16,798][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (32, '江苏（南京新街口店）', 10704.78999999984, 0.40711681635320274, 4358.100024529536, 2276.0, null, 26447.0, 0.5496394205790054, 4.7033347978909665, 229,
+                                      539,   41.069255, 4.222634508348794, 545, 19.641817, 0, 0.0, 2, 1.0, 1.0037106, 541);
+
+
+[2021-06-02 20:52:16,801][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (4, '上海（七宝凯德店）', 42248.16000000086, 0.5241752525775476, 22145.439938937096, 4752.0, 4074900.0, 26829.0, 1.169886190206253, 8.890606060606242, 160,
+                                      97,   42.244255, 48.98969072164948, 98, 431.10367, 5, 0.012045494999071902, 4, 0.9879545050009281, 0.9587629, 93);
+
+
+[2021-06-02 20:52:16,804][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (5, '上海（宝山新业坊店）', 5783.259999999997, 0.4434142665217308, 2564.3799910044636, 1176.0, 1464900.0, 11293.0, 1.1003605183669491, 4.917738095238092, 48,
+                                      25,   26.822807, 47.04, 26, 222.43307, 2, 0.035066727070890834, 4, 0.9649332729291091, 0.84, 21);
+
+
+[2021-06-02 20:52:16,807][INFO][zmaxx-etl.db-client] 
+ INSERT INTO `rb_sale` (             `store_key`,
+				     `store_name`, 
+                                     `payment`,
+                                     `gross_rate`, 
+                                     `gross`,
+                                     `sale_qty`,
+                                     `purchase_qty`,
+                                     `kcsl`,
+                                     `stock_turnover_days`, 
+                                     `unit_goods_price`, 
+                                     `sku_distinct_count`,
+                                     `order_count`,
+                                     `avg_order_pay`,
+                                     `joint_rate`,
+                                     `buy_user_count`,
+                                     `per_user_pay`,
+                                     `new_user_count`,
+                                     `new_user_rate`,
+                                     `old_user_count`,
+                                     `old_user_rate`,
+                                     `userless_order_rate`,
+                                     `userless_order_count`
+
+ 
+                                     )
+                                     VALUES
+                                     (6, '上海（桃浦新邻天地店）', 22848.599999999708, 0.3830694211165453, 8752.599975323385, 3560.0, 3691298.0, 27843.0, 1.9541690061763055, 6.418146067415648, 85,
+                                      52,   36.873134, 68.46153846153847, 53, 431.10565, 0, 0.0, 4, 1.0, 0.9423077, 49);
+
+

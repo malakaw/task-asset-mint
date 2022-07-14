@@ -1,0 +1,52 @@
+[2021-05-21 17:27:26,875][ERROR][zmaxx-etl.db-client] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'merchandise_price_less2' at line 1
+[2021-05-21 17:28:27,978][ERROR][zmaxx-etl.db-client] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'merchandise_price_less2' at line 1
+[2021-05-21 17:37:37,352][ERROR][zmaxx-etl.db-client] nil
+[2021-05-21 17:42:45,961][ERROR][zmaxx-etl.db-client] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '; )
+                               group by rdps.market' at line 5
+[2021-05-21 17:45:10,955][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_sql'
+[2021-05-21 17:45:10,960][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_less2'
+[2021-05-21 17:45:10,960][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_2_5'
+[2021-05-21 17:45:10,961][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj <= 2 )
+                               group by rdps.market 
+[2021-05-21 17:45:11,033][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj > 2 and lsj <= 5; )
+                               group by rdps.market 
+[2021-05-21 17:45:11,035][ERROR][zmaxx-etl.db-client] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '; )
+                               group by rdps.market' at line 5
+[2021-05-21 17:45:35,456][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_sql'
+[2021-05-21 17:45:35,458][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_less2'
+[2021-05-21 17:45:35,459][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_2_5'
+[2021-05-21 17:45:35,460][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj <= 2 )
+                               group by rdps.market 
+[2021-05-21 17:45:35,518][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj > 2 and lsj <= 5 )
+                               group by rdps.market 
+[2021-05-21 17:49:41,496][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_sql'
+[2021-05-21 17:49:41,503][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_less2'
+[2021-05-21 17:49:41,504][INFO][zmaxx-etl.db-client] select value_str from dmp_value where var='merchandise_price_2_5'
+[2021-05-21 17:49:41,505][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) as sku_count ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj <= 2 )
+                               group by rdps.market 
+[2021-05-21 17:49:41,569][INFO][zmaxx-etl.db-client] select rdps.market ,  count(distinct(rdps.goodsid)) as sku_count ,rds.name from rd_product_stock  rdps
+                               left join rd_store as rds on rds.id = rdps.market
+                               where rdps.kcsl>0 and rdps.jjje >0  
+                               and rdps.goodsid in 
+                               (select id from rd_product where lsj > 2 and lsj <= 5 )
+                               group by rdps.market 
